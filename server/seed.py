@@ -34,27 +34,27 @@ with app.app_context():
             username=username,
             bio=fake.paragraph(nb_sentences=3),
             image_url=fake.url(),
+            _password_hash=(username + 'password')
         )
-
-        user.password_hash = user.username + 'password'
 
         users.append(user)
 
     db.session.add_all(users)
+    db.session.commit()  # Commit users first so they have IDs
+
+    # Refresh users from the database to ensure IDs are set
+    users = User.query.all()
 
     print("Creating recipes...")
     recipes = []
     for i in range(100):
         instructions = fake.paragraph(nb_sentences=8)
-        
         recipe = Recipe(
             title=fake.sentence(),
             instructions=instructions,
             minutes_to_complete=randint(15,90),
+            user_id=rc(users).id
         )
-
-        recipe.user = rc(users)
-
         recipes.append(recipe)
 
     db.session.add_all(recipes)

@@ -1,0 +1,65 @@
+Deleting all records...
+Creating users...
+Creating recipes...
+Traceback (most recent call last):
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2114, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: NOT NULL constraint failed: recipes.user_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "seed.py", line 58, in <module>
+    db.session.commit()
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 599, in commit
+    return self._proxied.commit()
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4481, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1840, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2122, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2114, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/home/pglang/.pyenv/versions/3.8.13/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: recipes.user_id
+[SQL: INSERT INTO recipes (title, instructions, minutes_to_complete, user_id) VALUES (?, ?, ?, ?) RETURNING id]
+[parameters: ('There administration eat.', 'Large or laugh everybody seem thought. Statement case future or half certain. Decade public each sound perhaps. Kind media wonder vote bank again any ... (89 characters truncated) ... ector spring tree less from American. Party region defense her responsibility trouble like her. Than allow body simple camera ask television century.', 65, None)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
